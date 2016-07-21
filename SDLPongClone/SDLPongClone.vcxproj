@@ -86,6 +86,9 @@
     <ClInclude Include="cleanup.h" />
     <ClInclude Include="res_path.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="SDL2.dll" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

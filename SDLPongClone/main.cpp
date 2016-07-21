@@ -15,8 +15,6 @@ int main(int, char**) {
 		return 1;
 	}
 
-	//cout << "Resource path is: " << getResourcePath() << endl;
-
 	// opening a window
 	auto *window = SDL_CreateWindow("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
 	if (!window) {
@@ -29,7 +27,6 @@ int main(int, char**) {
 	auto flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
 	auto *renderer = SDL_CreateRenderer(window, -1, flags);
 	if (renderer == nullptr) {
-		//SDL_DestroyWindow(window);
 		cleanup(window);
 		cout << "SDL_CreateRenderer error: " << SDL_GetError() << endl;
 		SDL_Quit();
@@ -37,11 +34,9 @@ int main(int, char**) {
 	}
 
 	// Loading a Bitmap Image
-	string imagePath = getResourcePath("Lesson1") + "hello.bmp";
+	string imagePath = "hello.bmp";
 	SDL_Surface *bmp = SDL_LoadBMP(imagePath.c_str());
 	if (!bmp) {
-		//SDL_DestroyRenderer(renderer);
-		//SDL_DestroyWindow(window);
 		cleanup(renderer, window);
 		cout << "SDL_LoadBMP error: " << SDL_GetError() << endl;
 		SDL_Quit();
@@ -51,8 +46,6 @@ int main(int, char**) {
 	auto *texture = SDL_CreateTextureFromSurface(renderer, bmp);
 	SDL_FreeSurface(bmp);
 	if (!texture) {
-		/*SDL_DestroyRenderer(renderer);
-		SDL_DestroyWindow(window);*/
 		cleanup(renderer, window);
 		cout << "SDL_CreateTextureFromSurface error: " << SDL_GetError() << endl;
 		SDL_Quit();
@@ -72,9 +65,6 @@ int main(int, char**) {
 	}
 
 	// Cleaning Up
-	//SDL_DestroyTexture(texture);
-	//SDL_DestroyRenderer(renderer);
-	//SDL_DestroyWindow(window);
 	cleanup(texture, renderer, window);
 	SDL_Quit();
 
